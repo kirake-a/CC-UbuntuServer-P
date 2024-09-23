@@ -12,10 +12,10 @@ services:
       LIMESURVEY_ADMIN_NAME: FMAT Administrator
       LIMESURVEY_ADMIN_EMAI: lime@lime.lime
     volumes:
-      - ./plugins:/var/www/html/plugins
-      - ./upload:/var/www/html/upload
-      - ./config:/var/www/html/application/config
-      - ./sessions:/var/lime/sessions
+      - plugins:/var/www/html/plugins
+      - upload:/var/www/html/upload
+      - config:/var/www/html/application/config
+      - sessions:/var/lime/sessions
       #- ./limesurvey-data:/var/www/html/limesurvey
     depends_on:
       mysql:
@@ -31,7 +31,7 @@ services:
       MYSQL_DATABASE: limesurvey
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - ./mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
     healthcheck: # Docker que revise si MySQL está listo antes de permitir que otros servicios dependan de él
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -52,3 +52,7 @@ services:
 
 volumes:
   mysql:
+  plugins:
+  upload:
+  config:
+  sessions:
