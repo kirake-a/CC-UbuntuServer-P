@@ -6,16 +6,14 @@ ENV DOWNLOAD_URL=https://download.limesurvey.org/latest-master/limesurvey6.6.3+2
 # Instalar extensiones necesarias para LimeSurvey
 RUN apt-get update && apt-get install -y unzip libc-client-dev libfreetype6-dev libmcrypt-dev libpng-dev libjpeg-dev libldap-common libldap2-dev zlib1g-dev libkrb5-dev libtidy-dev libzip-dev libsodium-dev libpq-dev libonig-dev netcat-openbsd && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-freetype=/usr/include/  --with-jpeg=/usr \
-    && docker-php-ext-install gd mysqli mbstring pgsql pdo pdo_mysql pdo_mysqli pdo_pgsql opcache zip iconv tidy \
+    && docker-php-ext-install gd mysqli mbstring pgsql pdo pdo_mysql pdo_pgsql opcache zip iconv tidy \
     && docker-php-ext-configure ldap --with-libdir=lib/$(gcc -dumpmachine)/ \
     && docker-php-ext-install ldap \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
     && docker-php-ext-install imap \
     && docker-php-ext-install sodium \
     && pecl install mcrypt-1.0.6 \
-    && pecl install redis-6.0.2 \
     && docker-php-ext-enable mcrypt \
-    && docker-php-ext-enable redis \
     && docker-php-ext-install exif
 
 # Habilitar mod_rewrite para Apache
