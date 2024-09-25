@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:7-cli
 
 RUN mkdir -p /usr/src/myapp
 
