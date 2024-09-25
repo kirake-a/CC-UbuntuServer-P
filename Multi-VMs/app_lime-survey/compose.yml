@@ -1,0 +1,24 @@
+services:
+  limesurvey:
+    build: .
+    container_name: limesurvey
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      LIMESURVEY_DB_PASSWORD: password
+      LIMESURVEY_ADMIN_USER: admin
+      LIMESURVEY_ADMIN_PASSWORD: password
+      LIMESURVEY_ADMIN_NAME: FMAT Administrator
+      LIMESURVEY_ADMIN_EMAI: lime@lime.lime
+    volumes:
+      - plugins:/var/www/html/plugins
+      - upload:/var/www/html/upload
+      - config:/var/www/html/application/config
+      - sessions:/var/lime/sessions
+
+volumes:
+  plugins:
+  upload:
+  config:
+  sessions:
